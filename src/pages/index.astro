@@ -1,11 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import "../styles/global.css";
+import { getCollection } from 'astro:content';
+
+//Me traigo mi coleccion 'books', la que defini en el config.ts
+const books = await getCollection('books')
+console.log(books)
 ---
 
-<Layout title = "Welcome to Astro">
+<Layout title = "Dev Books, libros para programadores">
   <main>
     <h1 class="text-center text-7xl font-extrabold p-20">Dev 👩🏻‍💻
     <span class="block">Books</span></h1>
   </main>
+
+  <section aria-label = "Libros recomendados para programadores">
+    <div class="px-4 mx-auto max-w-screen"> 
+      <div class="grid gap-6 md:grid-cols-2">
+        {
+          books.map(book => {
+          const {slug, data} = book
+          const {title, author, img, readtime, description, buy} = data
+
+          return (
+          <article>
+            <img src={`/${img}`} alt={title} class="w-full rounded-lg"/> 
+          </article>
+          )
+
+          })
+        }
+    </div>
+  </section>
 </Layout>
