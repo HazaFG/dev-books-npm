@@ -23,9 +23,9 @@ console.log(books)
           const {title, author, img, readtime, description, buy} = data
 
           return (
-          <article>
-            <img src={`/${img}`} alt={title} class="w-full rounded-lg"/> 
-          </article>
+            <article class="flex">
+              <img src={`/${img}`} alt={title} class="w-full rounded-lg"/> 
+            </article>
           )
 
           })
@@ -33,3 +33,9 @@ console.log(books)
     </div>
   </section>
 </Layout>
+
+
+
+
+
+
