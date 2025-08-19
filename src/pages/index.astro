@@ -1,44 +1,49 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 
 //Me traigo mi coleccion 'books', la que defini en el config.ts
-const books = await getCollection('books')
-console.log(books)
+const books = await getCollection("books");
+console.log(books);
 ---
 
-<Layout title = "Dev Books, libros para programadores">
+<Layout title="Dev Books, libros para programadores">
   <main>
-    <h1 class="text-center text-7xl font-extrabold p-20 mb-14">Dev 👩🏻‍💻<span class="block">Books</span></h1>
+    <h1 class="text-center text-7xl font-extrabold p-20 mb-14">
+      Dev 👩🏻‍💻<span class="block">Books</span>
+    </h1>
   </main>
 
-  <section aria-label = "Libros recomendados para programadores">
-    <div class="px-4 mx-auto max-w-screen"> 
+  <section aria-label="Libros recomendados para programadores">
+    <div class="px-4 mx-auto max-w-screen">
       <div class="grid gap-6 md:grid-cols-2">
         {
-            books.map(book => {
+          books.map((book) => {
             //El nombre de data es importante, ya que es el nombre que usa astro para traerse los datos, anotalo
-            const {data, slug} = book
-            const {title, author, img, readtime, description, buy} = data
-              return (
-                <article class="flex">
-                  <a href={slug} class="mb-2 xl:xl-0 transition hover:scale-110">
-                    <img class="mr-5 w-48 rounded" src={`/${img}`} alt={title}/>
-                  </a>
-                  
-                  <div class="flex flex-col justify-center">
-                    <h2 class="mb-2 text-2xl font-bold leading-tight text-white">
-                      {title}
-                    </h2>
-                    <p class="mb-4 text-gray-300 max-w-sm">{description}</p>
-                    <span class="text-xs">Lectura en {readtime} minutos</span>
-                  </div>
+            const { data, slug } = book;
+            const { title, author, img, readtime, description, buy } = data;
+            return (
+              <article class="flex">
+                <a
+                  href={`libro/${slug}`}
+                  class="mb-2 xl:xl-0 transition hover:scale-110"
+                >
+                  <img class="mr-5 w-48 rounded" src={`/${img}`} alt={title} />
+                </a>
 
-                </article>
-              )
-            })
+                <div class="flex flex-col justify-center">
+                  <h2 class="mb-2 text-2xl font-bold leading-tight text-white">
+                    {title}
+                  </h2>
+                  <p class="mb-4 text-gray-300 max-w-sm">{description}</p>
+                  <span class="text-xs">Lectura en {readtime} minutos</span>
+                </div>
+              </article>
+            );
+          })
         }
+      </div>
     </div>
   </section>
 </Layout>
