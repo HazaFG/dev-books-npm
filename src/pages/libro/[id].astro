@@ -35,6 +35,8 @@ const { Content } = await render(book);
   </aside>
   <main class="max-w-2xl">
     <h1 class="text-4xl font-bold mb-4">{title}</h1>
-    <Content />
+    <div class="prose prose-invert">
+      <Content />
+    </div>
   </main>
 </div>
