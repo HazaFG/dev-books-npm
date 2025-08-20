@@ -41,7 +41,10 @@ console.log(books);
                 </a>
 
                 <div class="flex flex-col justify-center">
-                  <h2 class="mb-2 text-2xl font-bold leading-tight text-white">
+                  <h2
+                    transition:name={`img-${title}`}
+                    class="mb-2 text-2xl font-bold leading-tight text-white"
+                  >
                     {title}
                   </h2>
                   <p class="mb-4 text-gray-300 max-w-sm">{description}</p>
