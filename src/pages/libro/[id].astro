@@ -1,5 +1,6 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, render } from "astro:content";
+import "../../styles/global.css";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -21,7 +22,19 @@ const { data } = book;
 
 //Y ya dentro de data, si que ya tenemos todo el contenido de nuestros libros sin ningun problema
 const { title, author, img, readtime, description, buy } = data;
+
+//Renderizamos el contenido del markdown
+const { Content } = await render(book);
 ---
 
 <Layout title={`${title} - Dev Books`} />
-<h1>{title}</h1>
+<div class="flex gap-6 m-6">
+  <aside class="flex flex-col items-center gap-4">
+    <img class="w-72 h-auto rounded" src={`/${img}`} alt={title} />
+    <!-- Enlace para comprar -->
+  </aside>
+  <main class="max-w-2xl">
+    <h1 class="text-4xl font-bold mb-4">{title}</h1>
+    <Content />
+  </main>
+</div>
