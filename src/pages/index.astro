@@ -23,6 +23,9 @@ console.log(books);
             //El nombre de data es importante, ya que es el nombre que usa astro para traerse los datos, anotalo
             const { data, slug } = book;
             const { title, author, img, readtime, description, buy } = data;
+
+            console.log("Hola, soy el slug", slug);
+
             return (
               <article class="flex">
                 <a
