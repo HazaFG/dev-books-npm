@@ -42,7 +42,11 @@ const { Content } = await render(book);
       transition:name={`img-${slug}`}
     />
     <!-- <span class="text-xs" id="score"></span> -->
-    <BookScore id={slug} server:defer />
+    <BookScore id={slug} server:defer>
+      <span slot="fallback" class="text-xs opacity-70"
+        >Cargando puntuacion...</span
+      >
+    </BookScore>
 
     {
       SHOW_BUY_BUTTON && (
