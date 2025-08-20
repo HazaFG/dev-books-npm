@@ -3,7 +3,10 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
+  //Nos traemos nuestra bonita coleccion como ya lo hemos hecho
   const books = await getCollection("books");
+
+  //Mapeamos el array para que devuelva el contenido de cada una de las paginas
   return books.map((book) => ({
     params: { id: book.slug },
     props: { book },
