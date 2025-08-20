@@ -3,19 +3,21 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  return [
-    {
-      params: { id: "aprendiendo-git" },
-      props: { title: "Aprendiendo Git y Github" },
-    },
-    {
-      params: { id: "learning-typescript" },
-      props: { title: "Learning Typescript" },
-    },
-  ];
+  const books = await getCollection("books");
+  return books.map((book) => ({
+    params: { id: book.slug },
+    props: { book },
+  }));
 }
 
-const { title } = Astro.props;
+//Sacamos el libro de aqui
+const { book } = Astro.props;
+
+//Y aqui simplemente le sacamos la data del libro
+const { data } = book;
+
+//Y ya dentro de data, si que ya tenemos todo el contenido de nuestros libros sin ningun problema
+const { title, author, img, readtime, description, buy } = data;
 ---
 
 <Layout title={`${title} - Dev Books`} />
