@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 const { book } = Astro.props;
 
 //Y aqui simplemente le sacamos la data del libro
-const { data } = book;
+const { data, slug } = book;
 
 //Y ya dentro de data, si que ya tenemos todo el contenido de nuestros libros sin ningun problema
 const { title, author, img, readtime, description, buy } = data;
@@ -30,7 +30,13 @@ const { Content } = await render(book);
 <Layout title={`${title} - Dev Books`} />
 <div class="flex gap-6 m-6">
   <aside class="flex flex-col items-center gap-4">
-    <img class="w-72 h-auto rounded" src={`/${img}`} alt={title} />
+    <img
+      class="w-72 h-auto rounded"
+      src={`/${img}`}
+      alt={title}
+      transition:name={`img-${slug}`}
+    />
+
     <!-- Enlace para comprar -->
   </aside>
   <main class="max-w-2xl">
