@@ -3,6 +3,7 @@ import { SHOW_BUY_BUTTON } from "astro:env/server";
 import { getCollection, render } from "astro:content";
 import "../../styles/global.css";
 import Layout from "../../layouts/Layout.astro";
+import AmazonLogo from "../../components/AmazonLogo.astro";
 
 export async function getStaticPaths() {
   //Nos traemos nuestra bonita coleccion como ya lo hemos hecho
@@ -46,9 +47,12 @@ const { Content } = await render(book);
           title="Comprar libro"
           target="_blank"
           rel="noopener noreferrer"
-          class="amazon-button"
+          class="amazon-button flex items-center gap-2"
         >
           Comprar en Amazon España
+          <div class="flex flex-col">
+            <AmazonLogo />
+          </div>
         </a>
       )
     }
