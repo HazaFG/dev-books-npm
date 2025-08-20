@@ -6,6 +6,8 @@ import { getCollection } from "astro:content";
 //Me traigo mi coleccion 'books', la que defini en el config.ts
 const books = await getCollection("books");
 console.log(books);
+
+export const prerender = true;
 ---
 
 <Layout title="Dev Books, libros para programadores">
